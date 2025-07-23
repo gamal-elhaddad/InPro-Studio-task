@@ -45,9 +45,7 @@ This separation enables independent infrastructure provisioning and app deployme
 ## AI Tools Usage
 
 This project was developed with assistance from AI tools including:
-
-- **GitHub Copilot:** Accelerated code writing and Terraform module creation.  
-- **ChatGPT:** Helped design and explain architecture, generate Dockerfiles, Helm templates, and CI/CD workflows, and troubleshoot configuration details.  
+- **ChatGPT:** Helped design, write code, and troubleshoot configuration details.  
 
 AI tools were used to increase productivity, improve code quality, and speed up delivery.
 
