@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploy.name }}-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.deploy.name }}
+spec:
+  progressDeadlineSeconds: 1200
+  replicas: {{ .Values.deploy.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deploy.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deploy.name }}
+    spec:
+      containers:
+        - name: {{ .Values.deploy.name }}
+          image: {{- if .Values.deploy.registry }}{{ .Values.deploy.registry }}/{{- end }}{{ .Values.deploy.image }}:{{ .Values.deploy.tag }}
+          imagePullPolicy: Always
+          {{- if .Values.deploy.resources.enabled }}
+          resources:
+            requests:
+              cpu: {{ .Values.deploy.resources.requestCpu }}
+              memory: {{ .Values.deploy.resources.requestMemory }}
+            limits:
+              cpu: {{ .Values.deploy.resources.limitCpu }}
+              memory: {{ .Values.deploy.resources.limitMemory }}
+          {{- end }}
+      restartPolicy: Always

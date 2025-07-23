@@ -1,0 +1,44 @@
+namespace: default  # or any namespace you want
+
+deploy:
+  name: simpleapp
+  replicas: 1
+  port: 80
+  targetport: 80
+  image: simple-dotnet-app
+  tag: latest
+  registry: ""  # will be set dynamically from GitHub Actions or Terraform output
+  resources:
+    enabled: false  #adjust if needed
+
+svc:
+  enabled: true
+  name: simpleapp
+  port2:
+    enabled: false
+    targetport: 80
+  port3:
+    enabled: false
+    targetport: 80
+
+hpa:
+  autoscaling:
+    enabled: false
+
+probe:
+  enabled: false
+
+ingress:
+  enabled: false
+
+secret:
+  enabled: false
+
+appconfigs:
+  configmap:
+    enabled: false
+
+migration:
+  enabled: false
+
+#All false values can be true depends on the need or the case.
